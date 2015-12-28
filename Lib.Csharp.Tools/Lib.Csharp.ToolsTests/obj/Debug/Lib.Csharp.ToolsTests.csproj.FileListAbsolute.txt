@@ -1,0 +1,17 @@
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\Lib.Csharp.ToolsTests.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\Lib.Csharp.ToolsTests.pdb
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\Lib.Csharp.Tools.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\nunit.framework.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\Newtonsoft.Json.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\log4net.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\MyXls.SL2.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\HtmlAgilityPack.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\Lib.Csharp.Tools.pdb
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\nunit.framework.xml
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\Newtonsoft.Json.xml
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\log4net.xml
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\HtmlAgilityPack.pdb
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\HtmlAgilityPack.xml
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\obj\Debug\Lib.Csharp.ToolsTests.csprojResolveAssemblyReference.cache
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\obj\Debug\Lib.Csharp.ToolsTests.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\obj\Debug\Lib.Csharp.ToolsTests.pdb

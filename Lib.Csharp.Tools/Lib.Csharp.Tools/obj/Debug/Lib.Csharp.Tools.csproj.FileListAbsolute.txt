@@ -1,0 +1,13 @@
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\bin\Debug\Lib.Csharp.Tools.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\bin\Debug\Lib.Csharp.Tools.pdb
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\obj\Debug\Lib.Csharp.Tools.csprojResolveAssemblyReference.cache
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\obj\Debug\Lib.Csharp.Tools.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\obj\Debug\Lib.Csharp.Tools.pdb
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\bin\Debug\HtmlAgilityPack.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\bin\Debug\Newtonsoft.Json.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\bin\Debug\HtmlAgilityPack.pdb
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\bin\Debug\HtmlAgilityPack.xml
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\bin\Debug\Newtonsoft.Json.xml
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\bin\Debug\log4net.dll
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\bin\Debug\log4net.xml
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.Tools\bin\Debug\MyXls.SL2.dll
