@@ -55,6 +55,7 @@
     <Compile Include="AppCacheTests.cs" />
     <Compile Include="DateTimeHelperTests.cs" />
     <Compile Include="Log4NetHelperTests.cs" />
+    <Compile Include="NetHttp\NetHttpTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
