@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="AppCacheTests.cs" />
     <Compile Include="DateTimeHelperTests.cs" />
+    <Compile Include="HttpWebRequestHelperTests.cs" />
+    <Compile Include="ImageHelperTests.cs" />
     <Compile Include="Log4NetHelperTests.cs" />
     <Compile Include="NetHttp\NetHttpTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +68,15 @@
       <Project>{01df3bf6-793f-40d6-90aa-132892ba8e16}</Project>
       <Name>Lib.Csharp.Tools</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ResourcesForTest\cow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ResourcesForTest\login.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

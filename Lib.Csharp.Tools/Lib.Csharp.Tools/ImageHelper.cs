@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using Lib.Csharp.Tools.Dto;
 
 namespace Lib.Csharp.Tools
 {
@@ -166,13 +167,13 @@ namespace Lib.Csharp.Tools
         ///<summary>
         ///检查文件类型是否允许上传
         ///</summary>
-        public static bool IsAllowedExtension(System.Web.UI.WebControls.FileUpload controls, string configNodeName)
+        public static bool IsAllowedExtension(string filePath)
         {
             var fileConfig = new string[] { ".jpg", ".bmp", ".png", ".gif" };
 
-            if (!string.IsNullOrEmpty(controls.PostedFile.FileName))
+            if (!string.IsNullOrEmpty(filePath))
             {
-                var fileExtension = System.IO.Path.GetExtension(controls.PostedFile.FileName);
+                var fileExtension = System.IO.Path.GetExtension(filePath);
                 for (var i = 0; i < fileConfig.Length; i++)
                 {
                     if (fileExtension.Equals(fileConfig[i]))
@@ -210,48 +211,29 @@ namespace Lib.Csharp.Tools
         }
 
         /// <summary>
-        /// 根据指定路径，获取其下所有文件列表，
+        /// 获取指定图片的属性信息
         /// </summary>
-        /// <param name="filePath">路径</param>
-        /// <returns>文件名 list</returns>
-        public static List<string> GetFileInfo(string filePath)
-        {
-            FileSystemInfo fileinfo = new DirectoryInfo(filePath);
-            var filelist = ListFileSort(fileinfo);
-            return filelist;
-        }
-
-        /// <summary>
-        /// 获取其下所有文件列表
-        /// </summary>
-        /// <param name="fileinfo"></param>
+        /// <param name="originalImagePath"></param>
         /// <returns></returns>
-        public static List<string> ListFileSort(FileSystemInfo fileinfo)
+        public static DtoImageInfo GetPicInfo(string originalImagePath)
         {
-            var filelist = new List<string>();
-            var indent = 0;
-            if (!fileinfo.Exists) return null;
-            var dirinfo = fileinfo as DirectoryInfo;
-            if (dirinfo == null) return null; //不是目录
-            indent++;//缩进加一
-            var files = dirinfo.GetFileSystemInfos();
-            for (var i = 0; i < files.Length; i++)
+            var retObj = new DtoImageInfo();
+            System.Drawing.Image originalImage = System.Drawing.Image.FromFile(originalImagePath);
+            try
             {
-                var file = files[i] as FileInfo;
-                if (file != null) // 是文件
-                {
-                    filelist.Add(file.Name);
-
-                }
-                else   //是目录
-                {
-                    //this.richTextBox1.Text += files[i].FullName + "/r/n/r/n";
-                    //sb.Append(files[i].FullName + "/r/n/r/n");
-                    ListFileSort(files[i]);  //对子目录进行递归调用
-                }
+                retObj.Width = originalImage.Width;
+                retObj.Height = originalImage.Height;
             }
-            indent--;//缩进减一
-            return filelist;
+            catch (System.Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                originalImage.Dispose();
+
+            }
+            return retObj;
         }
     }
 }

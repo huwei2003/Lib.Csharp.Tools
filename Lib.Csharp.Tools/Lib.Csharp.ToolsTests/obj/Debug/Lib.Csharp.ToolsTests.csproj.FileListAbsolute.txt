@@ -15,3 +15,5 @@ C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\HtmlA
 C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\obj\Debug\Lib.Csharp.ToolsTests.csprojResolveAssemblyReference.cache
 C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\obj\Debug\Lib.Csharp.ToolsTests.dll
 C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\obj\Debug\Lib.Csharp.ToolsTests.pdb
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\ResourcesForTest\cow.png
+C:\HQGit\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\ResourcesForTest\login.jpg
