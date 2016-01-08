@@ -56,9 +56,11 @@
     <Compile Include="DateTimeHelperTests.cs" />
     <Compile Include="HttpWebRequestHelperTests.cs" />
     <Compile Include="ImageHelperTests.cs" />
+    <Compile Include="JsonHelperTests.cs" />
     <Compile Include="Log4NetHelperTests.cs" />
     <Compile Include="NetHttp\NetHttpTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SmtpMailHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
