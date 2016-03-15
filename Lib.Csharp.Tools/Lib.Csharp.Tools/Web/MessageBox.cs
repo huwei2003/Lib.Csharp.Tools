@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace Lib.Csharp.Tools
+namespace Lib.Csharp.Tools.Web
 {
     /// <summary>
     /// MessageBox 的摘要说明

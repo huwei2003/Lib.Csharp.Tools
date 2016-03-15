@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using Lib.Csharp.Tools;
 using NUnit.Framework;
+using System.Data;
 
 namespace Lib.Csharp.ToolsTests
 {
@@ -26,67 +29,81 @@ namespace Lib.Csharp.ToolsTests
         [Test()]
         public void ListToJsonTest()
         {
-            throw new NotImplementedException();
-        }
+            var list = new List<UserData>();
+            list.Add(new UserData() {Age=1,Passwork="111",Sex="man",UserId=1,UserName="001"});
+            list.Add(new UserData() { Age = 1, Passwork = "222", Sex = "woman", UserId = 2, UserName = "002" });
+            list.Add(new UserData() { Age = 1, Passwork = "333", Sex = "man", UserId = 3, UserName = "003" });
 
-        [Test()]
-        public void ListToJsonTest1()
-        {
-            throw new NotImplementedException();
-        }
+            var result = JsonHelper.ToJson(list);
 
-        [Test()]
-        public void ToJsonOldTest()
-        {
-            throw new NotImplementedException();
-        }
+            var list2 = JsonHelper.ToObject<List<UserData>>(result);
 
+            Assert.AreEqual(list.Count, list2.Count);
+
+        }
         [Test()]
         public void ToJsonTest()
         {
-            throw new NotImplementedException();
+            var model= new UserData() { Age = 1, Passwork = "111", Sex = "man", UserId = 1, UserName = "001" };
+            
+            var result = JsonHelper.ToJson(model);
+            var result2 = JsonHelper.ToObject<UserData>(result);
+
+            Assert.AreEqual(model.Age== result2.Age,true);
+
+        }
+        [Test()]
+        public void ToJsonByNameTest()
+        {
+            var model = new UserData() { Age = 1, Passwork = "111", Sex = "man", UserId = 1, UserName = "001" };
+
+            var result = JsonHelper.ToJson(model,"userdata");
         }
 
         [Test()]
-        public void ToObjectTest()
+        public void DataTableToJsonTest()
         {
-            throw new NotImplementedException();
-        }
+            var dt = new DataTable();
+            dt.Columns.Add("Age", typeof (int));
+            dt.Columns.Add("Passwork", typeof(string));
+            dt.Columns.Add("Sex", typeof(string));
+            dt.Columns.Add("UserId", typeof(int));
+            dt.Columns.Add("UserName", typeof(string));
 
-        [Test()]
-        public void ToListObjectTest()
-        {
-            throw new NotImplementedException();
-        }
+            dt.Rows.Add(new object[] {1,"111","man",1,"test111"});
+            dt.Rows.Add(new object[] { 2, "222", "man", 2, "test222" });
+            dt.AcceptChanges();
 
-        [Test()]
-        public void ToJsonTest1()
-        {
-            throw new NotImplementedException();
-        }
+            var result = JsonHelper.ToJson(dt);
+            var result2 = JsonHelper.ToObject<DataTable>(result);
 
-        [Test()]
-        public void ToJsonTest2()
-        {
-            throw new NotImplementedException();
-        }
+            Assert.AreEqual(dt.Rows.Count == result2.Rows.Count, true);
 
-        [Test()]
-        public void ToJsonTest3()
-        {
-            throw new NotImplementedException();
         }
-
         [Test()]
-        public void ToJsonTest4()
+        public void DataSetToJsonTest()
         {
-            throw new NotImplementedException();
-        }
+            var dt = new DataTable();
+            dt.Columns.Add("Age", typeof(int));
+            dt.Columns.Add("Passwork", typeof(string));
+            dt.Columns.Add("Sex", typeof(string));
+            dt.Columns.Add("UserId", typeof(int));
+            dt.Columns.Add("UserName", typeof(string));
 
-        [Test()]
-        public void String2JsonTest()
-        {
-            throw new NotImplementedException();
+            dt.Rows.Add(new object[] { 1, "111", "man", 1, "test111" });
+            dt.Rows.Add(new object[] { 2, "222", "man", 2, "test222" });
+            dt.AcceptChanges();
+
+            var ds = new DataSet();
+            ds.Tables.Add(dt);
+            ds.AcceptChanges();
+
+            var result = JsonHelper.ToJson(ds);
+            var result2 = JsonHelper.ToObject<DataSet>(result);
+
+            Assert.AreEqual(ds.Tables[0].Rows.Count == result2.Tables[0].Rows.Count, true);
+
         }
     }
+
 }

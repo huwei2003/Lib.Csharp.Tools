@@ -40,13 +40,10 @@ namespace Lib.Csharp.Tools
         }
         public XmlHelper()
         {
-            //
-            // TODO: 在此处添加构造函数逻辑
-            //
+
         }
         public XmlHelper(string tempxmlfilepath)
         {
-            // todo: 在此处添加构造函数逻辑
             this.XmlFilePathtype = EnumXmlPathType.VirtualPath;
             this.XmlFilePath = tempxmlfilepath;
             _xmldoc = GetXmlDocument();
@@ -54,7 +51,6 @@ namespace Lib.Csharp.Tools
 
         public XmlHelper(string tempxmlfilepath, EnumXmlPathType tempxmlfilepathtype)
         {
-            // todo: 在此处添加构造函数逻辑
             this.XmlFilePathtype = tempxmlfilepathtype;
             this.XmlFilePath = tempxmlfilepath;
             _xmldoc = GetXmlDocument();

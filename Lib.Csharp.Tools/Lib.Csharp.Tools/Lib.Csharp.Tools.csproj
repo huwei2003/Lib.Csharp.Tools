@@ -67,14 +67,15 @@
     <Compile Include="EntityHelper.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="FtpHelper.cs" />
+    <Compile Include="JsonHelperOld.cs" />
     <Compile Include="SmtpMailHelper.cs" />
     <Compile Include="HttpWebRequestHelper.cs" />
     <Compile Include="ImageHelper.cs" />
     <Compile Include="JsonHelper.cs" />
-    <Compile Include="LocationPoint.cs" />
+    <Compile Include="Dto\LocationPoint.cs" />
     <Compile Include="LocationPointHelper.cs" />
     <Compile Include="Log4netHelper.cs" />
-    <Compile Include="MessageBox.cs">
+    <Compile Include="Web\MessageBox.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MyXls.cs" />
