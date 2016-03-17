@@ -62,43 +62,89 @@ namespace Lib.Csharp.Tools
             }
 
         }
+
         /// <summary>
         /// 从服务器上传文件到FTP上
         /// </summary>
+        /// <param name="sourceFolderPrex">目录前缀，固定不变的部分</param>
         /// <param name="sFileDstPath">源文件夹名称</param>
+        /// <param name="folderName">ftp服务器的目标文件夹,完整目录去掉目录前缀</param>
+        /// <param name="ftpServerIp">ftp ip</param>
+        /// <param name="ftpUserName">用户名</param>
+        /// <param name="ftpPwd">密码</param>
+        public static void UploadFolder(string sourceFolderPrex, string sFileDstPath, string folderName, string ftpServerIp, string ftpUserName, string ftpPwd)
+        {
+            var dirinfo = new DirectoryInfo(sFileDstPath);
+            var files = dirinfo.GetFileSystemInfos();
+            for (var i = 0; i < files.Length; i++)
+            {
+                var file = files[i] as FileInfo;
+                if (file != null) // 是文件
+                {
+                    //Console.WriteLine("file.FullName = " + file.FullName + " folderName=" + folderName);
+                    UploadSmall(file.FullName, folderName, ftpServerIp, ftpUserName, ftpPwd);
+                }
+                else   //是目录
+                {
+                    //this.richTextBox1.Text += files[i].FullName + "/r/n/r/n";
+                    //sb.Append(files[i].FullName + "/r/n/r/n");
+                    var folder = files[i].FullName.Replace("\\\\", "\\").Replace(sourceFolderPrex, "").Replace("\\\\", "\\");
+                    CreateDirectory(folder, ftpServerIp, ftpUserName, ftpPwd);
+                    UploadFolder(sourceFolderPrex, files[i].FullName, files[i].FullName.Replace(sourceFolderPrex, ""), ftpServerIp, ftpUserName, ftpPwd);  //对子目录进行递归调用
+
+                    //Console.WriteLine();
+                }
+            }
+        }
+        /// <summary>
+        /// 从服务器上传文件到FTP上
+        /// </summary>
+        /// <param name="sFileDstPath">源文件名称</param>
         /// <param name="folderName">ftp服务器的目标文件夹</param>
         /// <param name="ftpServerIp">ftp ip</param>
         /// <param name="ftpUserName">用户名</param>
         /// <param name="ftpPwd">密码</param>
         public static void UploadSmall(string sFileDstPath, string folderName, string ftpServerIp, string ftpUserName, string ftpPwd)
         {
-            var fileInf = new FileInfo(sFileDstPath);
-            var reqFtp = (FtpWebRequest)WebRequest.Create(new Uri("ftp://" + ftpServerIp + "/" + folderName + "/" + fileInf.Name));
-
-            reqFtp.Credentials = new NetworkCredential(ftpUserName, ftpPwd);
-            reqFtp.KeepAlive = false;
-            reqFtp.Method = WebRequestMethods.Ftp.UploadFile;
-            reqFtp.UseBinary = true;
-            reqFtp.ContentLength = fileInf.Length;
-            var buffLength = 2048;
-            var buff = new byte[buffLength];
-
-            using (var fs = fileInf.OpenRead())
+            try
             {
-                using (var strm = reqFtp.GetRequestStream())
-                {
-                    var contentLen = fs.Read(buff, 0, buffLength);
-                    while (contentLen != 0)
-                    {
-                        strm.Write(buff, 0, contentLen);
-                        contentLen = fs.Read(buff, 0, buffLength);
-                    }
-                    strm.Close();
-                }
-                fs.Close();
-            }
+                var fileInf = new FileInfo(sFileDstPath);
 
+                //Console.WriteLine("file:=ftp://" + ftpServerIp + "/" + folderName + "/" + fileInf.Name);
+
+                var reqFtp =
+                    (FtpWebRequest)
+                        WebRequest.Create(new Uri("ftp://" + ftpServerIp + "/" + folderName + "/" + fileInf.Name));
+
+                reqFtp.Credentials = new NetworkCredential(ftpUserName, ftpPwd);
+                reqFtp.KeepAlive = true;
+                reqFtp.Method = WebRequestMethods.Ftp.UploadFile;
+                reqFtp.UseBinary = true;
+                reqFtp.ContentLength = fileInf.Length;
+                var buffLength = 81920;
+                var buff = new byte[buffLength];
+
+                using (var fs = fileInf.OpenRead())
+                {
+                    using (var strm = reqFtp.GetRequestStream())
+                    {
+                        var contentLen = fs.Read(buff, 0, buffLength);
+                        while (contentLen != 0)
+                        {
+                            strm.Write(buff, 0, contentLen);
+                            contentLen = fs.Read(buff, 0, buffLength);
+                        }
+                        strm.Close();
+                    }
+                    fs.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
+
 
         /// <summary>
         /// 删除FTP上的文件
