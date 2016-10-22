@@ -1046,5 +1046,35 @@ namespace Lib.Csharp.Tools
             return list;
         }
         #endregion
+
+        #region === other ===
+
+        /// <summary>
+        /// 可枚举类型转化为字符串，类似于js中数组的join函数
+        /// </summary>
+        public static string Join<T>(IEnumerable<T> ss, string tag = "")
+        {
+            var sb = new StringBuilder();
+            if (string.IsNullOrEmpty(tag))
+            {
+                foreach (var s in ss)
+                {
+                    sb.Append(s);
+                }
+            }
+            else
+            {
+                foreach (var s in ss)
+                {
+                    sb.Append(tag).Append(s);
+                }
+                if (sb.Length >= tag.Length)
+                {
+                    sb.Remove(0, tag.Length);
+                }
+            }
+            return sb.ToString();
+        }
+        #endregion
     }
 }

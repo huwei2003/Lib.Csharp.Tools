@@ -215,5 +215,36 @@ namespace Lib.Csharp.Tools
         {
             await SNTPTimeClient.ResetTime(ip,port);
         }
+
+        /// <summary>
+        /// TimeSpan 耗时中文格式显示
+        /// </summary>
+        public static string ToUseSimpleTime(TimeSpan ts)
+        {
+            string s;
+
+            if (ts.TotalDays > 1D)
+            {
+                s = string.Format("耗时 {0} 天",ts.TotalDays.ToString("0.00"));
+            }
+            else if (ts.TotalHours > 1D)
+            {
+                s = string.Format("耗时 {0} 小时",ts.TotalHours.ToString("0.00"));
+            }
+            else if (ts.TotalMinutes > 1D)
+            {
+                s = string.Format("耗时 {0} 分钟",ts.TotalMinutes.ToString("0.00"));
+            }
+            else if (ts.TotalSeconds > 1D)
+            {
+                s = string.Format("耗时 {0} 秒钟",ts.TotalSeconds.ToString("0.00"));
+            }
+            else
+            {
+                s = string.Format("耗时 {0} 毫秒",ts.TotalMilliseconds.ToString("0.00"));
+            }
+
+            return s;
+        }
     }
 }

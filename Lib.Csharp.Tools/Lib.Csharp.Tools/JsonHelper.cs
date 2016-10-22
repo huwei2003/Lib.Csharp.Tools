@@ -16,7 +16,17 @@ namespace Lib.Csharp.Tools
     public class JsonHelper
     {
 
+        static JsonHelper()
+        {
+            var setting = new JsonSerializerSettings
+            {
+                DateFormatHandling = DateFormatHandling.MicrosoftDateFormat,
+                DateFormatString = "yyyy-MM-dd HH:mm:ss"
+            };
+            //setting.Converters.Add(new JsonInt32Converter());
 
+            JsonConvert.DefaultSettings = () => setting;
+        }
         /// <summary>
         /// 对象转换为Json字符串
         /// </summary>

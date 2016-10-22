@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppCache.cs" />
+    <Compile Include="Base\MultiThread.cs" />
     <Compile Include="ByteHelper.cs" />
     <Compile Include="DateTimeHelper.cs" />
     <Compile Include="Base\BaseFactory.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Dto\HmacMD5.cs" />
     <Compile Include="HttpHelper.cs" />
     <Compile Include="JsonHelperOld.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="SmtpMailHelper.cs" />
     <Compile Include="HttpWebRequestHelper.cs" />
     <Compile Include="ImageHelper.cs" />
@@ -97,6 +99,9 @@
     <Compile Include="ZipHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
