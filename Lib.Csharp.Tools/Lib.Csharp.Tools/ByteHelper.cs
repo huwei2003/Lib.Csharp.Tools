@@ -56,7 +56,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 16进制字符串 转 byte[]
         /// </summary>
-        public static byte[] ToBytes(string hex)
+        public static byte[] HexToBytes(this string hex)
         {
             var bytes = new byte[hex.Length / 2];
             for (var i = 0; i < bytes.Length; i++)
@@ -68,7 +68,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// byte[] 转 16进制字符串
         /// </summary>
-        public static string ToHexString(byte[] bytes)
+        public static string ToHexString(this byte[] bytes)
         {
             if (bytes == null)
             {

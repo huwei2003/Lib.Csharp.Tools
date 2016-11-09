@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Lib.Csharp.Tools
 {
-    public class StrHelper
+    public static class StrHelper
     {
-        public StrHelper()
+        static StrHelper()
         {
         }
 
@@ -23,11 +23,11 @@ namespace Lib.Csharp.Tools
         /// <param name="aSrcStr">要截取的字符串</param>
         /// <param name="aLimitedNum">要截取的长度</param>
         /// <returns>返回截取后的字符串</returns>
-        public static string GetStrByLen(string aSrcStr, int aLimitedNum)
+        public static string GetStrByLen(this string aSrcStr, int aLimitedNum)
         {
 
             string temp;
-            var n = aSrcStr.Count(c => c >= 0x4e00 && c <= 0x9fa5);//中文的个数
+            //var n = aSrcStr.Count(c => c >= 0x4e00 && c <= 0x9fa5);//中文的个数
 
             if (aSrcStr.Length > aLimitedNum)
             {
@@ -49,7 +49,7 @@ namespace Lib.Csharp.Tools
         /// <param name="aSrcStr">要截取的字符串</param>
         /// <param name="aLimitedNum">要截取的长度</param>
         /// <returns>返回截取后的字符串</returns>
-        public static string GetStrByLen2(string aSrcStr, int aLimitedNum)
+        public static string GetStrByLen2(this string aSrcStr, int aLimitedNum)
         {
             if (aSrcStr.Length > aLimitedNum)
             {
@@ -88,7 +88,7 @@ namespace Lib.Csharp.Tools
         /// <param name="aSrcStr">要截取的字符串</param>
         /// <param name="aLimitedNum">要截取的长度</param>
         /// <returns>返回截取后的字符串</returns>
-        public static string GetStrByLen3(string aSrcStr, int aLimitedNum)
+        public static string GetStrByLen3(this string aSrcStr, int aLimitedNum)
         {
             if (aSrcStr.Length > aLimitedNum)
             {
@@ -132,7 +132,7 @@ namespace Lib.Csharp.Tools
         /// <param name="aLimitedNum">要截取的长度</param>
         /// <param name="dotCount">.数</param>
         /// <returns></returns>
-        public static string GetLenghtStr(string aSrcStr, int aLimitedNum, int dotCount)
+        public static string GetLenghtStr(this string aSrcStr, int aLimitedNum, int dotCount)
         {
             if (aLimitedNum <= 0) return aSrcStr;
             var tmpStr = aSrcStr;
@@ -178,7 +178,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="sStr">要过滤的字符串</param>
         /// <returns>过滤的字符串</returns>
-        public static string GetSafetyStr(string sStr)
+        public static string GetSafetyStr(this string sStr)
         {
             string returnStr = sStr;
             returnStr = returnStr.Replace("&", "&amp;");
@@ -199,7 +199,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="strHtml"></param>
         /// <returns></returns>
-        public static string FormatHtml(string strHtml)
+        public static string FormatHtml(this string strHtml)
         {
             //删除脚本
             strHtml = Regex.Replace(strHtml, @"<script[^>]*?>.*?</script>", "", RegexOptions.IgnoreCase);
@@ -232,7 +232,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="strHtml">输入内容</param>
         /// <returns></returns>
-        public static string FormatScript(string strHtml)
+        public static string FormatScript(this string strHtml)
         {
             //删除单行脚本
             strHtml = Regex.Replace(strHtml, @"<script[^>]*?>.*?</script>", "", RegexOptions.IgnoreCase);
@@ -248,7 +248,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="contents"></param>
         /// <returns></returns>
-        public static string RemoveImgStyle(string contents)
+        public static string RemoveImgStyle(this string contents)
         {
             var str = contents;
             try
@@ -282,7 +282,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="contents"></param>
         /// <returns></returns>
-        public static string RemoveHref(string contents)
+        public static string RemoveHref(this string contents)
         {
             var str = contents;
             //str = str.Replace("target=\"_blank\"", "");
@@ -328,7 +328,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="strsql"></param>
         /// <returns></returns>
-        public static string FormatSql(string strsql)
+        public static string FormatSql(this string strsql)
         {
             
             //Regex reg = new Regex(@"/w|and|exec|insert|select|delete|update|count|master|truncate|declare|char|mid|chr|/w", RegexOptions.Compiled | RegexOptions.IgnoreCase);
@@ -361,7 +361,7 @@ namespace Lib.Csharp.Tools
         #endregion
 
         #region ===要输入的文字[换行]===
-        public static string ReplaceBr(string sStr)
+        public static string ReplaceBr(this string sStr)
         {
             return sStr.Replace("\r", "<br>");
         }
@@ -369,23 +369,24 @@ namespace Lib.Csharp.Tools
 
         #region ===给指定的字标上颜色===
 
+        /// <summary>
+        /// 给指定的字标上颜色
+        /// </summary>
+        /// <param name="word">源内容</param>
+        /// <param name="str">上色的字符</param>
+        /// <param name="color">颜色</param>
+        /// <param name="isbold">是否加粗</param>
+        /// <returns></returns>
         public static string ReplaceColor(string word, string str, string color, bool isbold)
         {
             return word.Replace(str, (isbold ? "<b>" : "") + "<font color=" + color + ">" + str + "" + (isbold ? "</b>" : ""));
         }
-        public static string ReplaceColor(string word, string str, string color)
+        public static string ReplaceColor(this string word, string str, string color)
         {
             return word.Replace(str, "<font color=" + color + ">" + str + "");
         }
         #endregion
 
-        #region ===判断整数===
-        public static bool IsInt(string num)
-        {
-            var reg = new Regex(@"^\d+$");
-            return reg.IsMatch(num);
-        }
-        #endregion
 
         #region ===查出中文字符串对应的拼音缩写，如“1中国c”返回"1ZGc",如果是非中文，则返回本身===
 
@@ -394,7 +395,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="chineseStr"></param>
         /// <returns></returns>
-        public static string GetCnLetter(string chineseStr)
+        public static string GetCnLetter(this string chineseStr)
         {
             byte[] cBs = System.Text.Encoding.Default.GetBytes(chineseStr);
 
@@ -525,7 +526,7 @@ namespace Lib.Csharp.Tools
                             string[] temparyip = result.Split(",;".ToCharArray());
                             for (int i = 0; i < temparyip.Length; i++)
                             {
-                                if (IsIpAddress(temparyip[i])
+                                if (IsIp4Address(temparyip[i])
                                     && temparyip[i].Substring(0, 3) != "10."
                                     && temparyip[i].Substring(0, 7) != "192.168"
                                     && temparyip[i].Substring(0, 7) != "172.16.")
@@ -534,7 +535,7 @@ namespace Lib.Csharp.Tools
                                 }
                             }
                         }
-                        else if (IsIpAddress(result)) //代理即是IP格式 
+                        else if (IsIp4Address(result)) //代理即是IP格式 
                             return result;
                         else
                             result = null;    //代理中的内容 非IP，取IP 
@@ -561,7 +562,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="str1">待判断的IP地址</param>
         /// <returns>true or false</returns>
-        public static bool IsIpAddress(string str1)
+        public static bool IsIp4Address(this string str1)
         {
             if (str1 == null || str1 == string.Empty || str1.Length < 7 || str1.Length > 15) return false;
 
@@ -579,7 +580,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="strData">要转换的字符型数值</param>
         /// <returns></returns>
-        public static int ToInt32(string strData)
+        public static int ToInt32(this string strData)
         {
             int iData = 0;
             if (strData.Trim() == "")
@@ -591,11 +592,11 @@ namespace Lib.Csharp.Tools
             catch
             {
                 iData = 0;
-                if (strData.IndexOf(".") > 0)
+                if (strData.IndexOf(".", StringComparison.Ordinal) > 0)
                 {
                     try
                     {
-                        iData = Convert.ToInt32(strData.Substring(0, strData.IndexOf(".")));
+                        iData = Convert.ToInt32(strData.Substring(0, strData.IndexOf(".", StringComparison.Ordinal)));
                     }
                     catch
                     {
@@ -610,7 +611,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="strData"></param>
         /// <returns></returns>
-        public static double ToDouble(string strData)
+        public static double ToDouble(this string strData)
         {
             double iData = 0;
             if (strData.Trim() == "")
@@ -632,7 +633,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="strData">要转换的字符型参数</param>
         /// <returns></returns>
-        public static decimal ToDecimal(string strData)
+        public static decimal ToDecimal(this string strData)
         {
             decimal iDecimal = 0;
             if (strData.Trim() == "")
@@ -652,7 +653,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="strData"></param>
         /// <returns></returns>
-        public static DateTime ToDateTime(string strData)
+        public static DateTime ToDateTime(this string strData)
         {
             DateTime datetimew = DateTime.Now;
             try
@@ -687,46 +688,6 @@ namespace Lib.Csharp.Tools
             }
             return strDh;
         }
-        /// <summary>
-        /// 格式化日期及时间，
-        /// </summary>
-        /// <param name="strDate">转入的字符串</param>
-        /// <param name="iType">为类型，1表示为2010年4月14日;2为2010年4月14日 9时8分25秒</param>
-        /// <returns></returns>
-        public static string FormatDate(string strDate, int iType)
-        {
-            if (strDate.Trim() == "")
-                return "";
-
-            string str = "";
-            try
-            {
-                var dt = Convert.ToDateTime(strDate);
-
-                if (iType == 1)
-                {
-                    str = string.Format("{0}年{1}月{2}日", dt.Year, dt.Month, dt.Day);
-                    //str += dt.Year + "年";
-                    //str += dt.Month + "月";
-                    //str += dt.Day + "日";
-                }
-                else if (iType == 2)
-                {
-                    str = string.Format("{0}年{1}月{2}日 {3}时{4}分{5}秒", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second);
-                    //str += dt.Year + "年";
-                    //str += dt.Month + "月";
-                    //str += dt.Day + "日 ";
-                    //str += dt.Hour + "时";
-                    //str += dt.Minute + "分";
-                    //str += dt.Second + "秒";
-                }
-            }
-            catch
-            {
-                str = "";
-            }
-            return str;
-        }
 
 
         /// <summary>
@@ -735,7 +696,7 @@ namespace Lib.Csharp.Tools
         /// <param name="strJy">转入要转换的字符</param>
         /// <param name="iType">为类型，1表示为425.40元，2表示￥425.40元</param>
         /// <returns></returns>
-        public static string FormatMoney(string strJy, int iType)
+        public static string FormatMoney(this string strJy, int iType)
         {
             if (strJy.Trim() == "")
                 return "";
@@ -764,7 +725,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="strSex">要转换的字符，如1表示男，2表示女，0表示性别不限</param>
         /// <returns></returns>
-        public static string FormatSex(string strSex)
+        public static string FormatSex(this string strSex)
         {
             if (strSex.Trim() == "")
                 return "";
@@ -782,7 +743,7 @@ namespace Lib.Csharp.Tools
         /// 过滤非法关键词
         /// </summary>
         /// <param name="content">待过滤的内容</param>
-        public static string FilterBadWords(string content)
+        public static string FilterBadWords(this string content)
         {
             content = FormatSql(content);
             string[] badWords = { "自杀手册", "凌辱美少女", "毛泽东毛爷爷", "大祚榮", "校花沉沦记", "五奶小青", "江湖淫娘", "红楼绮梦", "骆冰淫传", "夫妇乐园", "阿里布达年代记", "爱神之传奇", "不良少女日记", "沧澜曲", "创世之子猎艳之旅", "熟女之惑", "风骚侍女", "海盗的悠闲", "黑星女侠", "狡猾的风水相师", "俪影蝎心", "秦青的幸", "四海龙女", "我的性启蒙", "伴我淫", "屠龙别记", "淫术炼金士", "十景缎", "舌战法庭", "少妇白洁", "风尘劫", "妇的哀羞", "哥言语录", "年春衫薄", "王子淫传", "少年阿宾", "禁断少女", "枪淫少妇", "淫间道", "嫩穴", "电车之狼", "淫水", "肉棍", "鸡吧", "鸡巴", "朱蒙", "出售走私", "浩方平台抽奖", "针孔摄像头", "出售银行", "出售发票", "迷昏", "失意药", "遗忘药", "失身药", "乙醚", "迷魂药", "迷魂", "失忆药", "手qiang", "迷幻", "mihuan", "mi幻", "qiang支", "枪zhi", "出售手枪", "卫星接收器", "香港GHB水", "透视", "老虎机", "轮盘机", "百家乐", "连线机", "模拟机", "彩票机", "礼品机", "火药制作", "麻醉枪", "监听", "监视", "海乐神", "酣乐欣", "三唑仑", "窃听", "三挫仑", "短信猫", "车牌反光", "江绵恒", "海归美女国内手眼通天", "激流中国", "富人与农民工", "98印尼", "华人惨案", "华国锋", "批评刘少奇", "李书凯", "蚁力神", "五毛党", "网络评论员工作指南", "邓小平", "高干子女名单", "鄧小平", "中国震惊世界", "江泽民", "吴官正无官", "罗干不干", "曾庆红不红", "黄菊早黄", "六合采", "六合彩", "六和彩", "白小姐", "踩江民谣", "罢食", "罢吃", "罢饭", "法輪", "镇压学生", "趙紫陽", "赵紫阳", "自由亚州", "人民报", "法lun功", "香港马会", "曾道人", "特码", "一码中特", "自由门", "李洪志", "大纪元", "真善忍", "新生网", "新唐人", "明慧", "无界浏览", "美国之音", "大紀元", "汕尾事件", "反中游行", "学生暴动", "死刑过程", "色空寺", "裸聊", "灭绝罪", "生成身份证", "身份证生成", "性用品", "性药品", "无界浏览器", "偷拍走光", "色情电影", "黄色电影", "黄色小电影", "rentiandiling", "xintangrendianshi", "全球春节晚会预告", "风骚少妇", "极品写真", "陈冠希裸照", "阿娇裸照", "裸体", "露点图片", "露点视频", "露点电影", "露点小电影", "漏点图片", "漏点电影", "漏点视频", "漏点小电影", "苹果被删", "胡锦涛和陈水扁对话", "两岸才子对话", "中国十大最恶心语录", "北京奥运会开幕式方案", "法轮", "法一轮", "阴唇", "阴户", "淫靡", "阴茎", "阴蒂", "乱伦", "手淫", "做鸡", "六四事件", "淫色", "K粉", "白粉", "大麻", "摇头丸", "出售猎枪", "手机定位", "钢珠手枪", "军用制式", "脱衣女郎", "脱衣美女", "脱衣MM", "赌球", "彩票预测", "球预测", "亚洲盘", "即时赔率", "移动电话拦截", "电表控制器", "针孔照相机", "防爆电击枪", "防爆喷雾剂", "出售气枪", "出售套牌车", "电子秤解码器", "地磅专用解码器", "电表专用调表器", "开锁专用工具", "DIY原子弹", "波佳达", "蜜洞", "菊花洞", "性学教授", "太王四神记", "凸点装", "国际足坛五大", "扶不起的阿斗", "出墙红杏之千岛湖之旅", "徐和柴学友", "遭警察殴打", "新诗年鉴", "李沛瑶", "美国凯德", "肥东交警", "针对台湾", "梁保华", "苏东解体", "反右题材", "信号拦截器", "山西洪洞", "巨额骗储", "东北风情熟女之惑", "海盗的悠闲生活", "黑天使", "混蛋神风流史", "秦青的幸福生活", "逃亡艳旅", "我的性启蒙老师", "现代艳帝传奇", "星光伴我淫", "倚天屠龙别记", "风月大陆", "美少妇的哀羞", "阿兵哥言语录", "遥想当年春衫薄", "神雕外传之郭襄", "睡着的武神", "汽车爆炸案", "周容重", "胡錦濤", "汕頭頻傳擄童割器官", "法輪功", "六决不", "清华网管", "卢跃刚", "最淫官员", "中国人都在上的四大当", "痛批政法委", "山西黑砖窑", "黑窑奴役", "敢坐飞机吗", "韩国身份证", "台湾身份证", "广安第二人民医院", "天鹅之旅", "玉蒲团", "践踏中国女性", "南京大学法学院", "挥发型迷药", "喷雾型迷药", "金伯帆", "崔英杰", "松花江污染", "仁寿警方", "愈快乐愈堕落麻醉枪", "唐人电视台", "金鳞岂是池中物", "江山美人志", "民警当副院长", "股市民谣", "卫星遭黑客攻击", "萬人暴", "官逼民反", "動乱", "军火价格", "劉奇葆", "女友坊", "奴役童工", "性奴", "奴事件", "二奶大奖赛", "性爱日记", "计生风暴", "厦门大游行", "二奶大赛", "纪股票市场五卅惨案", "毛爷爷复活", "智能H", "仿真假钞", "赣江学院", "江西田园置业集团", "高莺莺", "西藏禁书", "股民造反", "股民率先造反", "黑匣子最后", "抵制家乐福", "大恐怖杀手", "您的心被曾经的谎言", "金麟岂是池中物", "代理发票", "神州共震迎奥运", "三分钟禁播片", "日韩情欲电影", "夫妻两性电影少女人体图", "少女刺激电影", "全裸人体艺术图", "日本情欲", "妹妹艳情", "小妹妹艳爽", "少女浴室", "美女三点", "免费桃色", "激爽情欲", "夜生活夜电影", "美女午夜", "欧美情欲", "极品艳情", "国民党被推翻了么", "全国包二奶大赛", "高干子弟名单", "金晶的嫌疑人分析", "星爷搞笑发挥到如此境", "陈shuibian", "温jiabao", "胡jintao", "唐飞", "中國發表的東海開發", "民政局局长居然还摸", "福娃是魔咒", "股民暴动", "警察被指强奸女当事人", "四月圣火被搞怪", "必先撞其火车", "抢其火炬", "震其国土吓其国民", "中国是全球唯一绝对不", "个特权家庭垄断中国", "清海无上师", "代理国税", "代理海关", "代理地税", "龙的腾飞一定会有", "瓮安副县长", "出售工字牌气枪", "机打真发票", "刻章办证", "震后最流行幽默段子", "当今六大谎言", "东海协议", "当代无耻语录排行榜", "零八奥运会公式", "开平女生", "地下先烈们打电话", "阿扁推翻", "毛主席", "胡主席", "忠告股民", "法轮功", "忠告中国股民", "代开", "代办", "财税代理", "各类发票", "税务代理", "窃聽器", "楼主是猪" };
@@ -793,46 +754,7 @@ namespace Lib.Csharp.Tools
             return content;
         }
 
-        /// <summary>
-        /// 处理不规则的发布时间格式
-        /// </summary>
-        /// <param name="pubTime"></param>
-        /// <returns></returns>
-        public static string FormatPubTime(string pubTime)
-        {
-            var pubDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
-            try
-            {
-                pubDate = Convert.ToDateTime(pubTime).ToString("yyyy-MM-dd HH:mm");
-            }
-            catch (Exception ex)
-            {
-                var temp = pubTime.Replace("年", "-").Replace("月", "-").Replace("日", " ").Replace("/", "-").Replace("  ", " ");
-                if (temp.Length > 16)
-                {
-                    temp = temp.Substring(0, 16);
-                }
-                temp = temp.Trim();
-                if (temp.Length == 10)
-                {
-                    temp = temp + " " + DateTime.Now.ToString("HH:mm");
-                }
-
-                try
-                {
-                    pubDate = Convert.ToDateTime(temp).ToString("yyyy-MM-dd HH:mm");
-                }
-                catch (Exception ex1)
-                {
-                    pubDate = temp;
-                    if (string.IsNullOrWhiteSpace(temp))
-                    {
-                        pubDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
-                    }
-                }
-            }
-            return pubDate;
-        }
+        
         #endregion
 
         #region ===mac===
@@ -908,7 +830,7 @@ namespace Lib.Csharp.Tools
         /// 中文转unicode
         /// </summary>
         /// <returns></returns>
-        public static string Chinese_To_Unicode(string str)
+        public static string Chinese_To_Unicode(this string str)
         {
             var outStr = "";
             if (!string.IsNullOrEmpty(str))
@@ -924,7 +846,7 @@ namespace Lib.Csharp.Tools
         /// unicode转中文
         /// </summary>
         /// <returns></returns>
-        public static string Unicode_To_Chinese(string str)
+        public static string Unicode_To_Chinese(this string str)
         {
             var outStr = "";
             if (!string.IsNullOrEmpty(str))
@@ -951,7 +873,7 @@ namespace Lib.Csharp.Tools
         /// unicode转中文（符合js规则的）
         /// </summary>
         /// <returns></returns>
-        public static string Unicode_To_Chinese_Js(string str)
+        public static string Unicode_To_Chinese_Js(this string str)
         {
             var outStr = "";
             var reg = new Regex(@"(?i)\\u([0-9a-f]{4})");
@@ -965,7 +887,7 @@ namespace Lib.Csharp.Tools
         /// 中文转unicode（符合js规则的）
         /// </summary>
         /// <returns></returns>
-        public static string Chinese_To_Unicode_Js(string str)
+        public static string Chinese_To_Unicode_Js(this string str)
         {
             var outStr = "";
             var a = "";
@@ -988,7 +910,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="strHtml"></param>
         /// <returns></returns>
-        public static string GetUrlFromHtml(string strHtml)
+        public static string GetUrlFromHtml(this string strHtml)
         {
             var strUrl = GetStrByRegx(strHtml, @"((http|ftp|https)://)(([a-zA-Z0-9\._-]+\.[a-zA-Z]{2,6})|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,4})*(/[a-zA-Z0-9\&%_\./-~-,]*)?");
             
@@ -1000,7 +922,7 @@ namespace Lib.Csharp.Tools
         /// <param name="inputStr">源字符串</param>
         /// <param name="strPattern">正则表达式 如:/\\d{2,20}/</param>
         /// <returns>string</returns>
-        public static string GetStrByRegx(string inputStr, string strPattern)
+        public static string GetStrByRegx(this string inputStr, string strPattern)
         {
             var retStr = "";
             try
@@ -1025,7 +947,7 @@ namespace Lib.Csharp.Tools
         /// <param name="inputStr">源字符串</param>
         /// <param name="strPattern">正则表达式 注意要带分组 分组名固定为:"gname" 如: <a id=\"ctl00_M_dtgResumeList(?<gname>.*?).*> </param>
         /// <returns>List-string</returns>
-        public static List<string> GetListStrByRegxGroup(string inputStr, string strPattern)
+        public static List<string> GetListStrByRegxGroup(this string inputStr, string strPattern)
         {
             var list = new List<string>();
 

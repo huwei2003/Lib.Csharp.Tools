@@ -13,7 +13,7 @@ namespace Lib.Csharp.Tools
     /// <summary>
     /// Json操作类  用Newtonsoft.Json实现 推荐用
     /// </summary>
-    public class JsonHelper
+    public static class JsonHelper
     {
 
         static JsonHelper()
@@ -32,7 +32,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="jsonObject"></param>
         /// <returns></returns>
-        public static string ToJson(object jsonObject)
+        public static string ToJson(this object jsonObject)
         {
             return JsonConvert.SerializeObject(jsonObject);
         }
@@ -43,7 +43,7 @@ namespace Lib.Csharp.Tools
         /// <param name="jsonObject"></param>
         /// <param name="jsonName">json串的名称</param>
         /// <returns></returns>
-        public static string ToJson(object jsonObject,string jsonName)
+        public static string ToJson(this object jsonObject,string jsonName)
         {
             return "{\"" + jsonName + "\":"+JsonConvert.SerializeObject(jsonObject)+"}";
         }
@@ -53,7 +53,7 @@ namespace Lib.Csharp.Tools
         /// <typeparam name="T"></typeparam>
         /// <param name="strJson"></param>
         /// <returns></returns>
-        public static T ToObject<T>(string strJson)
+        public static T ToObject<T>(this string strJson)
         {
             return JsonConvert.DeserializeObject<T>(strJson);
         }

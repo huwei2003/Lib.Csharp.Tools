@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Caching;
 
+
 namespace Lib.Csharp.Tools
 {
     /// <summary>
@@ -14,7 +15,7 @@ namespace Lib.Csharp.Tools
     /// </summary>
     public class AppCache
     {
-        public static Cache MyCache = HttpContext.Current.Cache;
+        public static System.Web.Caching.Cache MyCache = HttpContext.Current.Cache;
         private AppCache() { }
 
         public static bool IsExist(string key)
@@ -32,12 +33,12 @@ namespace Lib.Csharp.Tools
 
         public static void Add(string key, object obj)
         {
-            MyCache.Add(key, obj, null, Cache.NoAbsoluteExpiration, Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+            MyCache.Add(key, obj, null, System.Web.Caching.Cache.NoAbsoluteExpiration, System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
         }
 
         public static void Add(string key, object obj, string file)
         {
-            MyCache.Add(key, obj, new CacheDependency(file), Cache.NoAbsoluteExpiration, Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+            MyCache.Add(key, obj, new CacheDependency(file), System.Web.Caching.Cache.NoAbsoluteExpiration, System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
         }
 
         public static void Remove(string key)

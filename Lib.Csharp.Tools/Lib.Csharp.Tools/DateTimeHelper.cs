@@ -10,7 +10,7 @@ namespace Lib.Csharp.Tools
     /// <summary>
     /// 时间，日期类的工具方法
     /// </summary>
-    public class DateTimeHelper
+    public static class DateTimeHelper
     {
         public static DateTime UtcBeginTime = new DateTime(1970, 1, 1);
         /// <summary>
@@ -21,10 +21,10 @@ namespace Lib.Csharp.Tools
         /// <summary>  
         /// 获取指定时间的时间戳  10位时间戳(second) or 13位时间戳(millisecond)
         /// </summary>
-        /// <param name="dt"></param>
+        /// <param name="dt">时间</param>
         /// <param name="bflag">为真时获取10位时间戳(second),为假时获取13位时间戳(millisecond).</param>  
         /// <returns></returns>  
-        public static long GetTimeStamp(DateTime dt,bool bflag = true)
+        public static long GetTimeStamp(this DateTime dt,bool bflag = true)
         {
             var ts = dt.ToUniversalTime() - UtcBeginTime;
             var ret = 0L;
@@ -41,9 +41,9 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static string GetFormatDate(DateTime dt)
+        public static string GetFormatDate(this DateTime dt)
         {
-            var str = string.Format("{0}/{1}/{2} {3}:{4}:{5}", dt.Year.ToString("0000"), dt.Month.ToString("00"), dt.Day.ToString("00"),dt.Hour.ToString("00"), dt.Minute.ToString("00"),dt.Second.ToString("00"));
+            var str = String.Format("{0}/{1}/{2} {3}:{4}:{5}", dt.Year.ToString("0000"), dt.Month.ToString("00"), dt.Day.ToString("00"),dt.Hour.ToString("00"), dt.Minute.ToString("00"),dt.Second.ToString("00"));
             return str;
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static string GetFormatLongDate(DateTime dt)
+        public static string GetFormatLongDate(this DateTime dt)
         {
             //var str = string.Format("{0}/{1}/{2} {3}:{4}:{5}", dt.Year.ToString("0000"), dt.Month.ToString("00"), dt.Day.ToString("00"), dt.Hour.ToString("00"), dt.Minute.ToString("00"), dt.Second.ToString("00"));
             return dt.ToString("yyyy-MM-dd HH:mm:ss zzz");
@@ -61,7 +61,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static string GetGmtTime(DateTime dt)
+        public static string GetGmtTime(this DateTime dt)
         {
             return dt.ToString("r");
         }
@@ -70,7 +70,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="strData"></param>
         /// <returns></returns>
-        public static DateTime ToDateTime(string strData)
+        public static DateTime ToDateTime(this string strData)
         {
             DateTime datetimew = DateTime.Now;
             try
@@ -92,7 +92,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="lData"></param>
         /// <returns></returns>
-        public static DateTime ToDateTime(long lData)
+        public static DateTime ToDateTime(this long lData)
         {
             //621355968000000000 is UtcBeginTime.Ticks 100毫微秒为单位
             
@@ -114,7 +114,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static string GetUtcDateTime(DateTime dt)
+        public static string GetUtcDateTime(this DateTime dt)
         {
 
             var datetimew = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ssZ");
@@ -134,7 +134,7 @@ namespace Lib.Csharp.Tools
         /// <param name="strDate">转入的字符串</param>
         /// <param name="iType">为类型，1 表示为2010年4月14日;2 为2010年4月14日 9时8分25秒</param>
         /// <returns></returns>
-        public static string GetChineseDate(string strDate, int iType)
+        public static string GetChineseDate(this string strDate, int iType)
         {
             if (strDate.Trim() == "")
                 return "";
@@ -146,11 +146,11 @@ namespace Lib.Csharp.Tools
 
                 if (iType == 1)
                 {
-                    str = string.Format("{0}年{1}月{2}日", dt.Year, dt.Month, dt.Day);
+                    str = String.Format("{0}年{1}月{2}日", dt.Year, dt.Month, dt.Day);
                 }
                 else if (iType == 2)
                 {
-                    str = string.Format("{0}年{1}月{2}日 {3}时{4}分{5}秒", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute,dt.Second);
+                    str = String.Format("{0}年{1}月{2}日 {3}时{4}分{5}秒", dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute,dt.Second);
                 }
             }
             catch
@@ -195,7 +195,7 @@ namespace Lib.Csharp.Tools
         /// 设置本机时间-将系统时间修改为指定的时间
         /// </summary>
         /// <param name="dt">指定的时间</param>
-        public static void SetServerTime(DateTime dt)
+        public static void SetServerTime(this DateTime dt)
         {
             SNTPTimeClient.SetTime(dt);
         }
@@ -219,32 +219,73 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// TimeSpan 耗时中文格式显示
         /// </summary>
-        public static string ToUseSimpleTime(TimeSpan ts)
+        public static string ToUseSimpleTime(this TimeSpan ts)
         {
             string s;
 
             if (ts.TotalDays > 1D)
             {
-                s = string.Format("耗时 {0} 天",ts.TotalDays.ToString("0.00"));
+                s = String.Format("耗时 {0} 天",ts.TotalDays.ToString("0.00"));
             }
             else if (ts.TotalHours > 1D)
             {
-                s = string.Format("耗时 {0} 小时",ts.TotalHours.ToString("0.00"));
+                s = String.Format("耗时 {0} 小时",ts.TotalHours.ToString("0.00"));
             }
             else if (ts.TotalMinutes > 1D)
             {
-                s = string.Format("耗时 {0} 分钟",ts.TotalMinutes.ToString("0.00"));
+                s = String.Format("耗时 {0} 分钟",ts.TotalMinutes.ToString("0.00"));
             }
             else if (ts.TotalSeconds > 1D)
             {
-                s = string.Format("耗时 {0} 秒钟",ts.TotalSeconds.ToString("0.00"));
+                s = String.Format("耗时 {0} 秒钟",ts.TotalSeconds.ToString("0.00"));
             }
             else
             {
-                s = string.Format("耗时 {0} 毫秒",ts.TotalMilliseconds.ToString("0.00"));
+                s = String.Format("耗时 {0} 毫秒",ts.TotalMilliseconds.ToString("0.00"));
             }
 
             return s;
+        }
+
+        /// <summary>
+        /// 处理不规则的发布时间格式
+        /// </summary>
+        /// <param name="pubTime"></param>
+        /// <returns></returns>
+        public static string FormatPubTime(this string pubTime)
+        {
+            string pubDate;
+            try
+            {
+                pubDate = Convert.ToDateTime(pubTime).ToString("yyyy-MM-dd HH:mm");
+            }
+            catch (Exception ex)
+            {
+                var temp = pubTime.Replace("年", "-").Replace("月", "-").Replace("日", " ").Replace("/", "-").Replace("  ", " ");
+                if (temp.Length > 16)
+                {
+                    temp = temp.Substring(0, 16);
+                }
+                temp = temp.Trim();
+                if (temp.Length == 10)
+                {
+                    temp = temp + " " + DateTime.Now.ToString("HH:mm");
+                }
+
+                try
+                {
+                    pubDate = Convert.ToDateTime(temp).ToString("yyyy-MM-dd HH:mm");
+                }
+                catch (Exception ex1)
+                {
+                    pubDate = temp;
+                    if (String.IsNullOrWhiteSpace(temp))
+                    {
+                        pubDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+                    }
+                }
+            }
+            return pubDate;
         }
     }
 }

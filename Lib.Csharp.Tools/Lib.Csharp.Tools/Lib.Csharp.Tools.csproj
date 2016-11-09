@@ -51,6 +51,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,16 +63,30 @@
     <Compile Include="AppCache.cs" />
     <Compile Include="Base\MultiThread.cs" />
     <Compile Include="ByteHelper.cs" />
+    <Compile Include="Cache.cs" />
+    <Compile Include="CustomAttributeHelper.cs" />
+    <Compile Include="DataRowHelper.cs" />
+    <Compile Include="DataSetHelper.cs" />
+    <Compile Include="DataTableHelper.cs" />
+    <Compile Include="DataViewHelper.cs" />
     <Compile Include="DateTimeHelper.cs" />
     <Compile Include="Base\BaseFactory.cs" />
+    <Compile Include="DictionaryHelper.cs" />
+    <Compile Include="DistinctHelper.cs" />
     <Compile Include="Dto\DtoImageInfo.cs" />
     <Compile Include="EntityHelper.cs" />
+    <Compile Include="EnumHelper.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="FtpHelper.cs" />
     <Compile Include="Dto\HmacMD5.cs" />
+    <Compile Include="Generic.cs" />
+    <Compile Include="GuidHelper.cs" />
     <Compile Include="HttpHelper.cs" />
     <Compile Include="JsonHelperOld.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="ObjectHelper.cs" />
+    <Compile Include="ReflectHelper.cs" />
+    <Compile Include="RMBConverter.cs" />
     <Compile Include="SmtpMailHelper.cs" />
     <Compile Include="HttpWebRequestHelper.cs" />
     <Compile Include="ImageHelper.cs" />
@@ -80,6 +95,16 @@
     <Compile Include="LocationPointHelper.cs" />
     <Compile Include="Log4netHelper.cs" />
     <Compile Include="StreamHelper.cs" />
+    <Compile Include="StringBuilderHelper.cs" />
+    <Compile Include="StringConverter.cs" />
+    <Compile Include="StringHelper.cs" />
+    <Compile Include="StringSecurity.cs" />
+    <Compile Include="ThreadHelper.cs" />
+    <Compile Include="TransactionHelper.cs" />
+    <Compile Include="Web\Application.cs" />
+    <Compile Include="Web\Cookie.cs" />
+    <Compile Include="Web\ImageExt.cs" />
+    <Compile Include="Web\JavaScript.cs" />
     <Compile Include="Web\MessageBox.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -94,6 +119,8 @@
     <Compile Include="Base\SNTPTimeClient.cs" />
     <Compile Include="StrHelper.cs" />
     <Compile Include="Verify.cs" />
+    <Compile Include="Web\RequestValidatorDisabled.cs" />
+    <Compile Include="Web\WebSite.cs" />
     <Compile Include="XmlHelper.cs" />
     <Compile Include="XPathHelper.cs" />
     <Compile Include="ZipHelper.cs" />

@@ -14,9 +14,9 @@ namespace Lib.Csharp.Tools
     /// <summary>
     /// Stream 处理类
     /// </summary>
-    public  class StreamHelper
+    public static class StreamHelper
     {
-        public static byte[] ToBytes( Stream stream)
+        public static byte[] ToBytes(this Stream stream)
         {
             if (stream.CanSeek)
             {
@@ -34,7 +34,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 流拷贝
         /// </summary>
-        private static MemoryStream CopyStream( Stream input)
+        private static MemoryStream CopyStream(this Stream input)
         {
             const int bufferSize = 4096;
             var output = new MemoryStream();
@@ -55,7 +55,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 流拷贝
         /// </summary>
-        public static MemoryStream Copy( Stream input)
+        public static MemoryStream Copy(this Stream input)
         {
             return CopyStream(input);
         }
@@ -63,7 +63,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 流拷贝
         /// </summary>
-        public static MemoryStream Copy( FileStream input)
+        public static MemoryStream Copy(this FileStream input)
         {
             return CopyStream(input);
         }
@@ -71,7 +71,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 流拷贝
         /// </summary>
-        public static MemoryStream Copy( GZipStream input)
+        public static MemoryStream Copy(this GZipStream input)
         {
             return CopyStream(input);
         }
@@ -79,7 +79,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 流拷贝
         /// </summary>
-        public static MemoryStream Copy( DeflateStream input)
+        public static MemoryStream Copy(this DeflateStream input)
         {
             return CopyStream(input);
         }
@@ -87,7 +87,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 流拷贝
         /// </summary>
-        public static MemoryStream Copy( BufferedStream input)
+        public static MemoryStream Copy(this BufferedStream input)
         {
             return CopyStream(input);
         }
@@ -95,7 +95,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 流拷贝
         /// </summary>
-        public static MemoryStream Copy( MemoryStream input)
+        public static MemoryStream Copy(this MemoryStream input)
         {
             return CopyStream(input);
         }
@@ -103,7 +103,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 流拷贝
         /// </summary>
-        public static MemoryStream Copy( SqlFileStream input)
+        public static MemoryStream Copy(this SqlFileStream input)
         {
             return CopyStream(input);
         }
@@ -111,7 +111,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 流拷贝
         /// </summary>
-        public static MemoryStream Copy( UnmanagedMemoryStream input)
+        public static MemoryStream Copy(this UnmanagedMemoryStream input)
         {
             return CopyStream(input);
         }
@@ -119,12 +119,12 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 流拷贝
         /// </summary>
-        public static MemoryStream Copy( SslStream input)
+        public static MemoryStream Copy(this SslStream input)
         {
             return CopyStream(input);
         }
 
-        public static string Md5( Stream input, bool toUpper = true)
+        public static string Md5(this Stream input, bool toUpper = true)
         {
             var bytes = MD5.Create().ComputeHash(input);
             var md5 = ByteHelper.ToHexString(bytes);

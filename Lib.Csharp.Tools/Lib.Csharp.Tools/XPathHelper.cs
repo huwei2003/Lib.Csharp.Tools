@@ -10,7 +10,7 @@ namespace Lib.Csharp.Tools
     /// <summary>
     /// XPath 处理类
     /// </summary>
-    public class XpathHelper
+    public static class XpathHelper
     {
         /// <summary>
         /// 根据XPATH获取筛选的字符串
@@ -19,7 +19,7 @@ namespace Lib.Csharp.Tools
         /// <param name="xpath">XPath表达式</param>
         /// <param name="separ">分隔符</param>
         /// <returns>提取后的内容</returns>
-        public static string GetInnerHtmlByXPath(string content, string xpath, string separ)
+        public static string GetInnerHtmlByXPath(this string content, string xpath, string separ)
         {
             var text = "";
             var doc1 = new HtmlDocument();
@@ -44,7 +44,7 @@ namespace Lib.Csharp.Tools
         /// <param name="preSepar">前缀</param>
         /// <param name="lastSepar">后缀</param>
         /// <returns></returns>
-        public static string GetInnerHtmlByXPath(string content, string xpath, string preSepar, string lastSepar)
+        public static string GetInnerHtmlByXPath(this string content, string xpath, string preSepar, string lastSepar)
         {
             var text = "";
             var doc1 = new HtmlDocument();
@@ -68,7 +68,7 @@ namespace Lib.Csharp.Tools
         /// <param name="xpath">XPath表达式</param>
         /// <param name="separ">分隔符</param>
         /// <returns>提取后的内容</returns>
-        public static string GetOuterHtmlByXPath(string content, string xpath, string separ)
+        public static string GetOuterHtmlByXPath(this string content, string xpath, string separ)
         {
             var text = "";
             var doc1 = new HtmlDocument();
@@ -91,7 +91,7 @@ namespace Lib.Csharp.Tools
         /// <param name="content">需要提取HTML的内容</param>
         /// <param name="xpath">XPath表达式</param>
         /// <returns>提取后的内容</returns>
-        public static List<string> GetOuterHtmlListByXPath(string content, string xpath)
+        public static List<string> GetOuterHtmlListByXPath(this string content, string xpath)
         {
             var list = new List<string>();
             var doc1 = new HtmlDocument();
@@ -114,7 +114,7 @@ namespace Lib.Csharp.Tools
         /// <param name="content">需要提取HTML的内容</param>
         /// <param name="xpath">XPath表达式</param>
         /// <returns>提取后的内容</returns>
-        public static List<string> GetInnerHtmlListByXPath(string content, string xpath)
+        public static List<string> GetInnerHtmlListByXPath(this string content, string xpath)
         {
             var list = new List<string>();
             var doc1 = new HtmlDocument();
@@ -139,7 +139,7 @@ namespace Lib.Csharp.Tools
         /// <param name="xpath">XPath表达式</param>
         /// <param name="attrName">属性名</param>
         /// <returns></returns>
-        public static string GetAttrValueByXPath(string content, string xpath, string attrName)
+        public static string GetAttrValueByXPath(this string content, string xpath, string attrName)
         {
             var text = "";
             var doc1 = new HtmlDocument();
@@ -166,7 +166,7 @@ namespace Lib.Csharp.Tools
         /// <param name="xpath">XPath表达式</param>
         /// <param name="attrName">属性名</param>
         /// <returns>提取后的内容</returns>
-        public static List<string> GetAttrValueListByXPath(string content, string xpath, string attrName)
+        public static List<string> GetAttrValueListByXPath(this string content, string xpath, string attrName)
         {
             var list = new List<string>();
             var doc1 = new HtmlDocument();
@@ -194,7 +194,7 @@ namespace Lib.Csharp.Tools
         /// <param name="preSepar">前缀</param>
         /// <param name="lastSepar">后缀</param>
         /// <returns></returns>
-        public static string GetAttrValueByXPath(string content, string xpath, string attrName, string preSepar, string lastSepar)
+        public static string GetAttrValueByXPath(this string content, string xpath, string attrName, string preSepar, string lastSepar)
         {
             var text = "";
             var doc1 = new HtmlDocument();

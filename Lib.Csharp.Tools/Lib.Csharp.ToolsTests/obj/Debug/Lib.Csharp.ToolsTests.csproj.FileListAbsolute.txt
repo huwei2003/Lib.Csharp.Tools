@@ -36,3 +36,4 @@ E:\testcode\git\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debu
 E:\testcode\git\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\obj\Debug\Lib.Csharp.ToolsTests.csprojResolveAssemblyReference.cache
 E:\testcode\git\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\obj\Debug\Lib.Csharp.ToolsTests.dll
 E:\testcode\git\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\obj\Debug\Lib.Csharp.ToolsTests.pdb
+E:\testcode\git\Lib.Csharp.Tools\Lib.Csharp.Tools\Lib.Csharp.ToolsTests\bin\Debug\log4net.config

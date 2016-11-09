@@ -11,14 +11,14 @@ namespace Lib.Csharp.Tools
     /// <summary>
     /// 压缩相关操作类
     /// </summary>
-    public class ZipHelper
+    public static class ZipHelper
     {
         /// <summary>
         /// 压缩
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static byte[] Compress(byte[] data)
+        public static byte[] Compress(this byte[] data)
         {
             var ms = new MemoryStream();
             var stream = new GZipStream(ms, CompressionMode.Compress);
@@ -32,7 +32,7 @@ namespace Lib.Csharp.Tools
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static byte[] Decompress(byte[] data)
+        public static byte[] Decompress(this byte[] data)
         {
             var ms = new MemoryStream();
             ms.Write(data, 0, data.Length);
