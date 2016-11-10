@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lib.Csharp.Tools.Dto
+﻿namespace Lib.Csharp.Tools.Dto
 {
     /// <summary>
     /// 图片属性信息

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using Lib.Csharp.Tools.Extend;
 using ThreadState = System.Threading.ThreadState;
 
 namespace Lib.Csharp.Tools.Base
@@ -87,7 +86,7 @@ namespace Lib.Csharp.Tools.Base
                 }
 
                 Log.Info(string.Format("{0}启动成功，共启动个{1}线程", TypeName,ThreadInfos.Count));
-                if (StrHelper.ToInt32(type.ToString()) != 1)
+                if (StringExt.ToInt32(type.ToString()) != 1)
                 {
                     return;
                 }
@@ -186,9 +185,9 @@ namespace Lib.Csharp.Tools.Base
                             var ts = sw.Elapsed;
                             if (ts.TotalSeconds > WornSeconds)
                             {
-                                Log.Warn(string.Format("线程{0}执行结束，{1}",threadName, DateTimeHelper.ToUseSimpleTime(ts)));
+                                Log.Warn(string.Format("线程{0}执行结束，{1}",threadName, DateTimeExt.ToUseSimpleTime(ts)));
                             }
-                            Log.Monitor(string.Format("线程{0}执行结束，{1}",threadName, DateTimeHelper.ToUseSimpleTime(ts)));
+                            Log.Monitor(string.Format("线程{0}执行结束，{1}",threadName, DateTimeExt.ToUseSimpleTime(ts)));
                         }
                         catch (Exception ex)
                         {
@@ -247,9 +246,9 @@ namespace Lib.Csharp.Tools.Base
                                 var ts = sw.Elapsed;
                                 if (ts.TotalSeconds > WornSeconds)
                                 {
-                                    Log.Warn(string.Format("线程{0}执行结束，{1}",threadName, DateTimeHelper.ToUseSimpleTime(ts)));
+                                    Log.Warn(string.Format("线程{0}执行结束，{1}",threadName, DateTimeExt.ToUseSimpleTime(ts)));
                                 }
-                                Log.Monitor(string.Format("线程{0}执行结束，{1}",threadName, DateTimeHelper.ToUseSimpleTime(ts)));
+                                Log.Monitor(string.Format("线程{0}执行结束，{1}",threadName, DateTimeExt.ToUseSimpleTime(ts)));
                             }
                         }
                         catch (Exception ex)
@@ -295,9 +294,9 @@ namespace Lib.Csharp.Tools.Base
                             var ts = sw.Elapsed;
                             if (ts.TotalSeconds > WornSeconds)
                             {
-                                Log.Warn(string.Format("线程{0}({1})执行结束，{2}",threadName, p, DateTimeHelper.ToUseSimpleTime( sw.Elapsed)));
+                                Log.Warn(string.Format("线程{0}({1})执行结束，{2}",threadName, p, DateTimeExt.ToUseSimpleTime( sw.Elapsed)));
                             }
-                            Log.Monitor(string.Format("线程{0}({1})执行结束，{2}",threadName, p, DateTimeHelper.ToUseSimpleTime(sw.Elapsed)));
+                            Log.Monitor(string.Format("线程{0}({1})执行结束，{2}",threadName, p, DateTimeExt.ToUseSimpleTime(sw.Elapsed)));
                         }
                         catch (Exception ex)
                         {
@@ -368,8 +367,8 @@ namespace Lib.Csharp.Tools.Base
                         var es = ThreadInfos.Where(a => a.Thread == null || !a.Thread.IsAlive).ToArray();
                         var errThreadNames = es.Select(a => a.ThreadName).ToArray();
 
-                        Log.Warn(string.Format("线程共{0}个，正常{1}个，异常{2}个，异常线程：{3}",ThreadInfos.Count, r, e, StrHelper.Join(errThreadNames,",")));
-                        Log.Warn(string.Format("正在重启线程{0}",StrHelper.Join(errThreadNames,",")));
+                        Log.Warn(string.Format("线程共{0}个，正常{1}个，异常{2}个，异常线程：{3}",ThreadInfos.Count, r, e, StringExt.Join(errThreadNames,",")));
+                        Log.Warn(string.Format("正在重启线程{0}",StringExt.Join(errThreadNames,",")));
 
                         foreach (var thread in es)
                         {

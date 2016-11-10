@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Lib.Csharp.Tools;
 using NUnit.Framework;
 using System.Data;
+using Lib.Csharp.Tools.Extend;
 
 namespace Lib.Csharp.ToolsTests
 {
@@ -34,9 +35,9 @@ namespace Lib.Csharp.ToolsTests
             list.Add(new UserData() { Age = 1, Passwork = "222", Sex = "woman", UserId = 2, UserName = "002" });
             list.Add(new UserData() { Age = 1, Passwork = "333", Sex = "man", UserId = 3, UserName = "003" });
 
-            var result = JsonHelper.ToJson(list);
+            var result = JsonExt.ToJson(list);
 
-            var list2 = JsonHelper.ToObject<List<UserData>>(result);
+            var list2 = JsonExt.ToObject<List<UserData>>(result);
 
             Assert.AreEqual(list.Count, list2.Count);
 
@@ -46,8 +47,8 @@ namespace Lib.Csharp.ToolsTests
         {
             var model= new UserData() { Age = 1, Passwork = "111", Sex = "man", UserId = 1, UserName = "001" };
             
-            var result = JsonHelper.ToJson(model);
-            var result2 = JsonHelper.ToObject<UserData>(result);
+            var result = JsonExt.ToJson(model);
+            var result2 = JsonExt.ToObject<UserData>(result);
 
             Assert.AreEqual(model.Age== result2.Age,true);
 
@@ -57,7 +58,7 @@ namespace Lib.Csharp.ToolsTests
         {
             var model = new UserData() { Age = 1, Passwork = "111", Sex = "man", UserId = 1, UserName = "001" };
 
-            var result = JsonHelper.ToJson(model,"userdata");
+            var result = JsonExt.ToJson(model,"userdata");
         }
 
         [Test()]
@@ -74,8 +75,8 @@ namespace Lib.Csharp.ToolsTests
             dt.Rows.Add(new object[] { 2, "222", "man", 2, "test222" });
             dt.AcceptChanges();
 
-            var result = JsonHelper.ToJson(dt);
-            var result2 = JsonHelper.ToObject<DataTable>(result);
+            var result = JsonExt.ToJson(dt);
+            var result2 = JsonExt.ToObject<DataTable>(result);
 
             Assert.AreEqual(dt.Rows.Count == result2.Rows.Count, true);
 
@@ -98,8 +99,8 @@ namespace Lib.Csharp.ToolsTests
             ds.Tables.Add(dt);
             ds.AcceptChanges();
 
-            var result = JsonHelper.ToJson(ds);
-            var result2 = JsonHelper.ToObject<DataSet>(result);
+            var result = JsonExt.ToJson(ds);
+            var result2 = JsonExt.ToObject<DataSet>(result);
 
             Assert.AreEqual(ds.Tables[0].Rows.Count == result2.Tables[0].Rows.Count, true);
 

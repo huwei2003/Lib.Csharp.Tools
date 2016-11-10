@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 using org.in2bits.MyXls;
 
 namespace Lib.Csharp.Tools
@@ -20,7 +18,7 @@ namespace Lib.Csharp.Tools
         /// <param name="filePath">保存的文件路径,主路径保存在web.config,这里只要传文件名</param>
         /// <param name="sheetName">excel的sheet表名</param>
         /// <returns></returns>
-        public static string DataTableToExcel(System.Data.DataTable dt, string filePath, string sheetName)
+        public static string DataTableToExcel(DataTable dt, string filePath, string sheetName)
         {
             if (sheetName.Length < 1)
             {
@@ -201,12 +199,12 @@ namespace Lib.Csharp.Tools
                     //xls = null;  
 
                     var fi = new FileInfo(filePath);
-                    System.Web.HttpContext.Current.Response.Clear();
-                    System.Web.HttpContext.Current.Response.Charset = "UTF-8";
-                    System.Web.HttpContext.Current.Response.ContentType = "application/vnd-excel";//"application/vnd.ms-excel"; 
+                    HttpContext.Current.Response.Clear();
+                    HttpContext.Current.Response.Charset = "UTF-8";
+                    HttpContext.Current.Response.ContentType = "application/vnd-excel";//"application/vnd.ms-excel"; 
 
-                    System.Web.HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment; filename=" + fi.Name));
-                    System.Web.HttpContext.Current.Response.WriteFile(fi.FullName);
+                    HttpContext.Current.Response.AddHeader("Content-Disposition", string.Format("attachment; filename=" + fi.Name));
+                    HttpContext.Current.Response.WriteFile(fi.FullName);
 
                 }
                 #endregion
@@ -236,7 +234,7 @@ namespace Lib.Csharp.Tools
         /// <param name="sheetName2"></param>
         /// <param name="sheetName3"></param>
         /// <returns></returns>
-        public static string DataTableToExcel(System.Data.DataTable dt1, System.Data.DataTable dt2, System.Data.DataTable dt3, string filePath, string sheetName1, string sheetName2, string sheetName3)
+        public static string DataTableToExcel(DataTable dt1, DataTable dt2, DataTable dt3, string filePath, string sheetName1, string sheetName2, string sheetName3)
         {
             //if (sheetName1.Length < 1)
             //{

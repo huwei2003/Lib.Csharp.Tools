@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
+using System.Web.UI.WebControls;
 using Lib.Csharp.Tools.Dto;
+using Image = System.Drawing.Image;
 
 namespace Lib.Csharp.Tools
 {
@@ -23,7 +22,7 @@ namespace Lib.Csharp.Tools
         /// <param name="mode">生成缩略图的方式 HW:指定高宽缩放（可能变形） W:指定宽，高按比例 H:指定高，宽按比例 Cut:指定高宽裁减（不变形）</param>    
         public static void MakeThumbnail(string originalImagePath, string thumbnailPath, int width, int height, string mode)
         {
-            System.Drawing.Image originalImage = System.Drawing.Image.FromFile(originalImagePath);
+            Image originalImage = Image.FromFile(originalImagePath);
 
             var towidth = width;
             var toheight = height;
@@ -44,7 +43,7 @@ namespace Lib.Csharp.Tools
                     towidth = originalImage.Width * height / originalImage.Height;
                     break;
                 case "Cut"://指定高宽裁减（不变形）                
-                    if ((double)originalImage.Width / (double)originalImage.Height > (double)towidth / (double)toheight)
+                    if (originalImage.Width / originalImage.Height > towidth / toheight)
                     {
                         oh = originalImage.Height;
                         ow = originalImage.Height * towidth / toheight;
@@ -64,31 +63,31 @@ namespace Lib.Csharp.Tools
             }
 
             //新建一个bmp图片
-            var bitmap = new System.Drawing.Bitmap(towidth, toheight);
+            var bitmap = new Bitmap(towidth, toheight);
 
             //新建一个画板
-            var g = System.Drawing.Graphics.FromImage(bitmap);
+            var g = Graphics.FromImage(bitmap);
 
             //设置高质量插值法
-            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+            g.InterpolationMode = InterpolationMode.High;
 
             //设置高质量,低速度呈现平滑程度
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            g.SmoothingMode = SmoothingMode.HighQuality;
 
             //清空画布并以透明背景色填充
-            g.Clear(System.Drawing.Color.Transparent);
+            g.Clear(Color.Transparent);
 
             //在指定位置并且按指定大小绘制原图片的指定部分
-            g.DrawImage(originalImage, new System.Drawing.Rectangle(0, 0, towidth, toheight),
-                new System.Drawing.Rectangle(x, y, ow, oh),
-                System.Drawing.GraphicsUnit.Pixel);
+            g.DrawImage(originalImage, new Rectangle(0, 0, towidth, toheight),
+                new Rectangle(x, y, ow, oh),
+                GraphicsUnit.Pixel);
 
             try
             {
                 //以jpg格式保存缩略图
-                bitmap.Save(thumbnailPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                bitmap.Save(thumbnailPath, ImageFormat.Jpeg);
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -109,8 +108,8 @@ namespace Lib.Csharp.Tools
         /// <param name="isDeleteOld">是否删除旧图片</param>
         public static void AddWater(string path, string pathSy, string addText, bool isDeleteOld)
         {
-            var image = System.Drawing.Image.FromFile(path);
-            var g = System.Drawing.Graphics.FromImage(image);
+            var image = Image.FromFile(path);
+            var g = Graphics.FromImage(image);
             g.DrawImage(image, 0, 0, image.Width, image.Height);
             var x = image.Width / 2 - 50;
             var y = image.Height / 2 + 80;
@@ -121,10 +120,10 @@ namespace Lib.Csharp.Tools
             //g.FillRectangle(new Pen(Color.Gold), rec);
             g.FillRectangle(Brushes.White, rec);
 
-            var f = new System.Drawing.Font("Verdana", 18);
-            var b = new System.Drawing.SolidBrush(System.Drawing.Color.Gold);
+            var f = new Font("Verdana", 18);
+            var b = new SolidBrush(Color.Gold);
 
-            var rng = new System.Drawing.RectangleF(x, y, 90, 20);
+            var rng = new RectangleF(x, y, 90, 20);
 
             g.DrawString(addText, f, b, x, y);
 
@@ -147,14 +146,14 @@ namespace Lib.Csharp.Tools
         /// <param name="isDeleteOld">是否删除旧图片</param>
         public static void AddWaterPic(string path, string pathSyp, string pathSypf, bool isDeleteOld)
         {
-            var image = System.Drawing.Image.FromFile(path);
-            var copyImage = System.Drawing.Image.FromFile(pathSypf);
-            var g = System.Drawing.Graphics.FromImage(image);
+            var image = Image.FromFile(path);
+            var copyImage = Image.FromFile(pathSypf);
+            var g = Graphics.FromImage(image);
             var x = (image.Width - copyImage.Width) / 2;
             var y = (image.Width - copyImage.Width) / 2;
             var height = copyImage.Height;
             var width = copyImage.Width;
-            g.DrawImage(copyImage, new System.Drawing.Rectangle(x, y, height, width), 0, 0, copyImage.Width, copyImage.Height, System.Drawing.GraphicsUnit.Pixel);
+            g.DrawImage(copyImage, new Rectangle(x, y, height, width), 0, 0, copyImage.Width, copyImage.Height, GraphicsUnit.Pixel);
             g.Dispose();
 
             image.Save(pathSyp);
@@ -173,7 +172,7 @@ namespace Lib.Csharp.Tools
 
             if (!string.IsNullOrEmpty(filePath))
             {
-                var fileExtension = System.IO.Path.GetExtension(filePath);
+                var fileExtension = Path.GetExtension(filePath);
                 for (var i = 0; i < fileConfig.Length; i++)
                 {
                     if (fileExtension.Equals(fileConfig[i]))
@@ -188,7 +187,7 @@ namespace Lib.Csharp.Tools
         /// <summary>
         /// 判断上传文件大小是否超过设置的最大值
         /// </summary>
-        public static bool IsAllowedLength(System.Web.UI.WebControls.FileUpload Controls)
+        public static bool IsAllowedLength(FileUpload controls)
         {
             var maxLength = 100;
             try
@@ -202,7 +201,7 @@ namespace Lib.Csharp.Tools
 
             maxLength = maxLength * 1024;
 
-            if (Controls.PostedFile.ContentLength > maxLength)
+            if (controls.PostedFile.ContentLength > maxLength)
             {
                 return true;
             }
@@ -218,13 +217,13 @@ namespace Lib.Csharp.Tools
         public static DtoImageInfo GetPicInfo(string originalImagePath)
         {
             var retObj = new DtoImageInfo();
-            System.Drawing.Image originalImage = System.Drawing.Image.FromFile(originalImagePath);
+            Image originalImage = Image.FromFile(originalImagePath);
             try
             {
                 retObj.Width = originalImage.Width;
                 retObj.Height = originalImage.Height;
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 throw e;
             }

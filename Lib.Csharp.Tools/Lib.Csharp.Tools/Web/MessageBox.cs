@@ -1,4 +1,6 @@
 ﻿using System.Text;
+using System.Web;
+using System.Web.UI;
 
 namespace Lib.Csharp.Tools.Web
 {
@@ -6,7 +8,7 @@ namespace Lib.Csharp.Tools.Web
     /// MessageBox 的摘要说明
     /// 用于web
     /// </summary>
-    public class MessageBox : System.Web.UI.UserControl
+    public class MessageBox : UserControl
     {
         public MessageBox()
         {
@@ -18,7 +20,7 @@ namespace Lib.Csharp.Tools.Web
         /// </summary>
         /// <param name="page">当前页面指针，一般为this</param>
         /// <param name="msg">提示信息</param>
-        public static void Show(System.Web.UI.Page page, string msg)
+        public static void Show(Page page, string msg)
         {
             page.ClientScript.RegisterStartupScript(page.GetType(), "message", "<script language='javascript' defer>alert('" + msg.ToString() + "');</script>");
 
@@ -29,7 +31,7 @@ namespace Lib.Csharp.Tools.Web
         /// </summary>
         /// <param name="page">当前页面指针，一般为this</param>
         /// <param name="function"></param>
-        public static void ShowFunction(System.Web.UI.Page page, string function)
+        public static void ShowFunction(Page page, string function)
         {
             page.ClientScript.RegisterStartupScript(page.GetType(), "function", "<script language='javascript' defer>" + function.ToString() + "</script>");
         }
@@ -41,7 +43,7 @@ namespace Lib.Csharp.Tools.Web
         /// <param name="msg">要显示的信息</param>
         /// <param name="trueDoSomething">如果点确定后要做的事(JavaScript脚本)</param>
         /// <param name="falseDoSomething">如果点取消后要做的事(JavaScript脚本)</param>
-        public static void ShowConfirm(System.Web.UI.Page page, string msg, string trueDoSomething, string falseDoSomething)
+        public static void ShowConfirm(Page page, string msg, string trueDoSomething, string falseDoSomething)
         {
             var builder = new StringBuilder();
             builder.Append("<SCRIPT language='JavaScript' defer>");
@@ -60,7 +62,7 @@ namespace Lib.Csharp.Tools.Web
         /// <param name="page">当前页面指针，一般为this</param>
         /// <param name="msg">提示信息</param>
         /// <param name="url">跳转的目标URL</param>
-        public static void ShowAndRedirect(System.Web.UI.Page page, string msg, string url)
+        public static void ShowAndRedirect(Page page, string msg, string url)
         {
             ShowAndRedirect(page, msg, url, false);
         }
@@ -71,7 +73,7 @@ namespace Lib.Csharp.Tools.Web
         /// <param name="msg">提示信息</param>
         /// <param name="url">跳转的目标URL</param>
         /// <param name="openPage">是否跳出框架</param>
-        public static void ShowAndRedirect(System.Web.UI.Page page, string msg, string url, bool openPage)
+        public static void ShowAndRedirect(Page page, string msg, string url, bool openPage)
         {
             var builder = new StringBuilder();
             builder.Append("<script language='javascript' defer>");
@@ -91,7 +93,7 @@ namespace Lib.Csharp.Tools.Web
         /// <param name="page">当前页面指针，一般为this</param>
         /// <param name="msg">提示信息</param>
         /// <param name="hiddenfieldName">隐藏表单控件名</param>
-        public static void Confirm(System.Web.UI.Page page, string msg, string hiddenfieldName)
+        public static void Confirm(Page page, string msg, string hiddenfieldName)
         {
             var strMsg = msg.Replace("\n", "\\n");
             strMsg = msg.Replace("\"", "'");
@@ -119,7 +121,7 @@ namespace Lib.Csharp.Tools.Web
         /// </summary>
         /// <param name="page">当前页面指针，一般为this</param>
         /// <param name="script">输出脚本</param>
-        public static void ResponseScript(System.Web.UI.Page page, string script)
+        public static void ResponseScript(Page page, string script)
         {
             page.ClientScript.RegisterStartupScript(page.GetType(), "message", "<script language='javascript' defer>" + script + "</script>");
         }
@@ -133,7 +135,7 @@ namespace Lib.Csharp.Tools.Web
             sb.Append("<script language=\"javascript\"> \n");
             sb.Append("window.location.href=window.location.href;");
             sb.Append("</script>");
-            System.Web.HttpContext.Current.Response.Write(sb.ToString());
+            HttpContext.Current.Response.Write(sb.ToString());
 
         }
         /// <summary>
@@ -150,7 +152,7 @@ namespace Lib.Csharp.Tools.Web
             //sb.Append("alert('" + msg +url+ "');parent.maintarget='" + url + "'");
 
             sb.Append("</script>");
-            System.Web.HttpContext.Current.Response.Write(sb.ToString());
+            HttpContext.Current.Response.Write(sb.ToString());
         }
         /// <summary>
         /// 弹出消息框，转向另外一页
@@ -166,7 +168,7 @@ namespace Lib.Csharp.Tools.Web
             //sb.Append("alert('" + msg +url+ "');parent.maintarget='" + url + "'");
 
             sb.Append("</script>");
-            System.Web.HttpContext.Current.Response.Write(sb.ToString());
+            HttpContext.Current.Response.Write(sb.ToString());
         }
         /// <summary>
         /// 显示一个弹出窗口，并刷新转向上一页
@@ -181,7 +183,7 @@ namespace Lib.Csharp.Tools.Web
             sb.Append("window.location.href=p;\n");
             sb.Append("</script>");
 
-            System.Web.HttpContext.Current.Response.Write(sb.ToString());
+            HttpContext.Current.Response.Write(sb.ToString());
         }
 
         /// <summary>
@@ -196,7 +198,7 @@ namespace Lib.Csharp.Tools.Web
             sb.Append("history.back();\n");
             sb.Append("</script>");
 
-            System.Web.HttpContext.Current.Response.Write(sb.ToString());
+            HttpContext.Current.Response.Write(sb.ToString());
         }
 
 

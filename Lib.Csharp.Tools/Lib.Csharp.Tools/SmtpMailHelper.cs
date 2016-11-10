@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Threading.Tasks;
@@ -58,7 +59,7 @@ namespace Lib.Csharp.Tools
                 //邮件推送的SMTP地址和端口
                 var smtpClient = new SmtpClient(_config.SmtpHost, _config.SmtpPort);
                 // 使用SMTP用户名和密码进行验证
-                var credentials = new System.Net.NetworkCredential(_config.FromEail, _config.Password);
+                var credentials = new NetworkCredential(_config.FromEail, _config.Password);
                 smtpClient.Credentials = credentials;
                 await Task.Run(() =>
                 {

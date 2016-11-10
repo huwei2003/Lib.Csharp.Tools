@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lib.Csharp.Tools
 {
@@ -215,7 +211,7 @@ namespace Lib.Csharp.Tools
         private void encode(ref byte[] output, uint[] input, uint len)
         {
             uint i, j;
-            if (System.BitConverter.IsLittleEndian)
+            if (BitConverter.IsLittleEndian)
             {
                 for (i = 0, j = 0; j < len; i++, j += 4)
                 {
@@ -240,7 +236,7 @@ namespace Lib.Csharp.Tools
         private void decode(ref uint[] output, byte[] input, uint len)
         {
             uint i, j;
-            if (System.BitConverter.IsLittleEndian)
+            if (BitConverter.IsLittleEndian)
             {
                 for (i = 0, j = 0; j < len; i++, j += 4)
                     output[i] = ((uint)input[j]) | (((uint)input[j + 1]) << 8) |

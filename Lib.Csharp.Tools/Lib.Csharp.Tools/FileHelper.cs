@@ -6,8 +6,8 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
+using Lib.Csharp.Tools.Extend;
 using Lib.Csharp.Tools.Security;
 
 namespace Lib.Csharp.Tools
@@ -451,7 +451,7 @@ namespace Lib.Csharp.Tools
                 using (Stream source = File.OpenRead(zipPath))
                 {
                     source.Position = 0;
-                    using (var input = StreamHelper.Copy(new GZipStream(source, CompressionMode.Decompress, true)))
+                    using (var input = StreamExt.Copy(new GZipStream(source, CompressionMode.Decompress, true)))
                     {
                         input.Position = 0;
                         using (var br = new BinaryReader(input))
@@ -510,7 +510,7 @@ namespace Lib.Csharp.Tools
                     using (Stream source = File.OpenRead(zipPath))
                     {
                         source.Position = 0;
-                        using (var input = StreamHelper.Copy(new GZipStream(source, CompressionMode.Decompress, true)))
+                        using (var input = StreamExt.Copy(new GZipStream(source, CompressionMode.Decompress, true)))
                         {
                             input.Position = 0;
                             using (var br = new BinaryReader(input))

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Web.Security;
+using Lib.Csharp.Tools.Extend;
 
 namespace Lib.Csharp.Tools.Security
 {
@@ -312,7 +309,7 @@ namespace Lib.Csharp.Tools.Security
         /// <returns>加密后的字节数组</returns>
         public static byte[] DeaEncrypt(Stream input, byte[] keyBytes)
         {
-            return DeaEncrypt(StreamHelper.ToBytes(input),keyBytes);
+            return DeaEncrypt(StreamExt.ToBytes(input),keyBytes);
             //return input.ToBytes().DeaEncrypt(keyBytes);
         }
 
@@ -324,7 +321,7 @@ namespace Lib.Csharp.Tools.Security
         /// <returns>加密后的字节数组</returns>
         public static string DeaDecrypt(Stream input, byte[] keyBytes)
         {
-            return DeaDecrypt(StreamHelper.ToBytes(input), keyBytes);
+            return DeaDecrypt(StreamExt.ToBytes(input), keyBytes);
             //return input.ToBytes().DeaDecrypt(keyBytes);
         }
 

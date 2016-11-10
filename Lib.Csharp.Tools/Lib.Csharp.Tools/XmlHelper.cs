@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 
@@ -146,7 +142,7 @@ namespace Lib.Csharp.Tools
             }
             catch (XmlException xmle)
             {
-                System.Console.WriteLine(xmle.Message);
+                Console.WriteLine(xmle.Message);
             }
             return xmlnode;
         }
@@ -173,7 +169,7 @@ namespace Lib.Csharp.Tools
             }
             catch (XmlException xmle)
             {
-                System.Console.WriteLine(xmle.Message);
+                Console.WriteLine(xmle.Message);
             }
             return strreturn;
         }
@@ -201,7 +197,7 @@ namespace Lib.Csharp.Tools
             }
             catch (XmlException xmle)
             {
-                System.Console.WriteLine(xmle.Message);
+                Console.WriteLine(xmle.Message);
             }
             return intreturn;
         }
@@ -229,7 +225,7 @@ namespace Lib.Csharp.Tools
             }
             catch (XmlException xmle)
             {
-                System.Console.WriteLine(xmle.Message);
+                Console.WriteLine(xmle.Message);
             }
             return nodereturn;
         }
@@ -256,7 +252,7 @@ namespace Lib.Csharp.Tools
             }
             catch (XmlException xmle)
             {
-                System.Console.WriteLine(xmle.Message);
+                Console.WriteLine(xmle.Message);
             }
             return intreturn;
         }
@@ -280,7 +276,7 @@ namespace Lib.Csharp.Tools
             }
             catch (XmlException xmle)
             {
-                System.Console.WriteLine(xmle.Message);
+                Console.WriteLine(xmle.Message);
             }
             return strreturn;
         }
@@ -314,7 +310,7 @@ namespace Lib.Csharp.Tools
             }
             catch (XmlException xmle)
             {
-                System.Console.WriteLine(xmle.Message);
+                Console.WriteLine(xmle.Message);
             }
             return strreturn;
         }
@@ -352,7 +348,7 @@ namespace Lib.Csharp.Tools
             }
             catch (XmlException xmle)
             {
-                System.Console.WriteLine(xmle.Message);
+                Console.WriteLine(xmle.Message);
             }
             return strreturn;
         }
@@ -389,7 +385,7 @@ namespace Lib.Csharp.Tools
             }
             catch (XmlException xmle)
             {
-                System.Console.WriteLine(xmle.Message);
+                Console.WriteLine(xmle.Message);
             }
             return strreturn;
         }
@@ -420,7 +416,7 @@ namespace Lib.Csharp.Tools
             }
             catch (XmlException xmle)
             {
-                System.Console.WriteLine(xmle.Message);
+                Console.WriteLine(xmle.Message);
             }
             return strreturn;
         }

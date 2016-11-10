@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using log4net;
 
 namespace Lib.Csharp.Tools
@@ -8,7 +6,7 @@ namespace Lib.Csharp.Tools
     public class Log
     {
         
-        private static log4net.ILog log = log4net.LogManager.GetLogger("Admin");
+        private static ILog log = LogManager.GetLogger("Admin");
         public static void Debug(string message)
         {
             if (log.IsDebugEnabled)
@@ -20,7 +18,7 @@ namespace Lib.Csharp.Tools
         /// 记录异常的相关信息,log4net
         /// </summary>
         /// <param name="ex1"></param>
-        public static void Debug(System.Exception ex1)
+        public static void Debug(Exception ex1)
         {
             if (log.IsDebugEnabled)
             {
@@ -39,7 +37,7 @@ namespace Lib.Csharp.Tools
             }
         }
 
-        public static void Error(System.Exception ex1)
+        public static void Error(Exception ex1)
         {
             if (log.IsErrorEnabled)
             {

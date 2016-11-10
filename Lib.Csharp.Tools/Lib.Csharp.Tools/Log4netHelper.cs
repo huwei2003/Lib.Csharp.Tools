@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using log4net;
 using log4net.Config;
 
 namespace Lib.Csharp.Tools
@@ -13,11 +10,11 @@ namespace Lib.Csharp.Tools
     /// </summary>
     public class Log4NetHelper
     {
-        private static readonly log4net.ILog Log = log4net.LogManager.GetLogger("Admin");
+        private static readonly ILog Log = LogManager.GetLogger("Admin");
 
          static Log4NetHelper()
         {
-            var logConfig = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "/log4net.config";
+            var logConfig = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "/log4net.config";
             XmlConfigurator.ConfigureAndWatch(
                 new FileInfo(logConfig));
         }
@@ -33,7 +30,7 @@ namespace Lib.Csharp.Tools
         /// 记录异常的相关信息,log4net
         /// </summary>
         /// <param name="ex1"></param>
-        public static void Debug(System.Exception ex1)
+        public static void Debug(Exception ex1)
         {
             if (Log.IsDebugEnabled)
             {

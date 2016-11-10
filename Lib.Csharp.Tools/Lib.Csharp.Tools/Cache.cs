@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Lib.Csharp.Tools.Extend;
 
 namespace Lib.Csharp.Tools
 {
@@ -169,7 +170,7 @@ namespace Lib.Csharp.Tools
 
         public static bool SetCache(string key, object value, DateTime until)
         {
-            var cacheSeconds = (until - DateTime.Now).TotalSeconds.ToString("0").ToInt32();
+            var cacheSeconds = StringExt.ToInt32((until - DateTime.Now).TotalSeconds.ToString("0"));
             return SetCache(key, value, cacheSeconds);
         }
 
